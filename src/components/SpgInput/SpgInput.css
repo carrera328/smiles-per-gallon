@@ -1,0 +1,42 @@
+[data-id='input-main'] {
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, auto);
+    width: 100%;
+}
+
+.dc-vertical {
+    display:flex;
+    flex-direction: column;
+}
+
+.dc-horizontal {
+    display:flex;
+    flex-direction:row;
+}
+
+
+
+.dc-size_1-of-4 {
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.dc-size_2-of-4 {
+    grid-column-start: 1;
+    grid-column-end: 7; 
+}
+
+.dc-size_3-of-4 {
+    grid-column-start: 1;
+    grid-column-end: 10;
+}
+
+.dc-size_4-of-4 {
+    grid-column-start: 1;
+    grid-column-end: -1;
+}
+
+.dc-size-large {
+    height: 6rem;
+}
