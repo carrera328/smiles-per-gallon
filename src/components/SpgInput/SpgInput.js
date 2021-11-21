@@ -20,7 +20,7 @@ export default function SpgInput({name, type,  value, handler = () => {}, size =
                 <label htmlFor='input'>
                     {label}
                 </label>
-                <input name='input' data-id='name' type={type} onChange={handler}/>        
+                <input name='input' value={value} data-id='name' type={type} onKeyDown={handler}></input>        
             </div>
         </div>
     )

@@ -30,6 +30,7 @@
 .dc-size_3-of-4 {
     grid-column-start: 1;
     grid-column-end: 10;
+    justify-self: center;
 }
 
 .dc-size_4-of-4 {
