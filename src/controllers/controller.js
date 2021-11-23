@@ -1,11 +1,20 @@
 export const fetchData = async (year = 2000, make = 'honda', model = 'civic') => {
     try {
-        const response = await fetch(`https://cors-anywhere.herokuapp.com/http://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims&make=${make}&model=${model}&year=${year}`, {
-            method: 'GET'
+        const response = await fetch(`http://localhost:5000`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify({
+                year: year,
+                model: model,
+                make: make
+            })
         }).then(res => res.text());
 
-        console.log(JSON.parse(response.slice(2, -1).slice(0, -1)));
-        return JSON.parse(response.slice(2, -1).slice(0, -1));
+        console.log(JSON.parse(response));
+        return JSON.parse(response);
          
     } catch(error) {
         console.error(error);

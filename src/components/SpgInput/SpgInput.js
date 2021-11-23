@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './SpgInput.css';
+import '../../App.css';
 
 export default function SpgInput({name, type,  value, handler = () => {}, size = 'medium', label, ...props}) {
     if (!name || !type) {
@@ -13,14 +13,20 @@ export default function SpgInput({name, type,  value, handler = () => {}, size =
         xlarge: 'dc-size_4-of-4'
     }
     
-
     return (
         <div data-id='input-main'>
             <div className={`dc-vertical ${classMap[size]}`}>
                 <label htmlFor='input'>
                     {label}
                 </label>
-                <input name='input' value={value} data-id='name' type={type} onKeyDown={handler}></input>        
+                <input 
+                    name='input' 
+                    value={value} 
+                    data-id='name' 
+                    type={type} 
+                    onClick={handler} 
+            m        onKeyUp={handler}>
+                </input>        
             </div>
         </div>
     )

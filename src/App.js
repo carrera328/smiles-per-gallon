@@ -1,9 +1,10 @@
 import { Fragment, useState, useEffect } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import SpgInput from './components/SpgInput/SpgInput.js';
 import { v4 as uuidv4 } from 'uuid';
 import {fetchData} from './controllers/controller.js'
+import Card from './components/Card/Card.js';
 
 
 function App() {
@@ -22,41 +23,28 @@ function App() {
 	}
 
 	const handleModelChange = async (event) => {
-		setModel(event.currentTarget.value);
-		if (make && (year.length === 4)) {
-			console.log('sl');
-			const data = await callout();
-			console.log(data);
-		} 
+		setModel(event.currentTarget.value); 
 	}
 
 	const handleMakeChange = (event) => {
 		setMake(event.currentTarget.value);
+	}
 
-		
+	const handleSubmit = (event) => {
+		callout();
 	}
 	
-	const callout = () => {
-		fetchData(year, make, model);
-	}
-
-	useEffect(() => {
-		setLoading(true);
+	const callout = async () => {
 		try {
-			async function fetchApi() {
-				const cars = await fetchData();
-				setLoading(false);
-				setVehicles(priorState => [...priorState, ...cars.Trims]);
-				console.log(vehicles);
-		   }
-		   fetchApi();
-		} catch (error) {
+			const data = await fetchData(year, make, model);
+			console.log('data', data);
+			setVehicles(priorState => [...data.Trims]);
+			console.log(vehicles);
+		} catch(error) {
 			setError(true);
-			setMessage(error);
+			alert(error);
 		}
-		
-	}, []);
-
+	}
 
   return (
 		<Fragment>
@@ -90,11 +78,25 @@ function App() {
 						size='xlarge'
 						handler={handleModelChange}>
 					</SpgInput>
+					<SpgInput
+						name='submit'
+						type='submit'
+						value='Search'
+						size='xlarge'
+						handler={handleSubmit}>
+					</SpgInput>
 				</div>
 				
 			</div>
-			<div>
-				{!loading && vehicles.map((vehicle) => <li key={uuidv4()}>{vehicle.model_name}</li>)}
+			<div data-id='cards'>
+				{!loading && vehicles.map((vehicle) => 
+					// <div>
+					// 	<li key={uuidv4()}>{vehicle.model_name}</li>
+					// 	<li key={uuidv4()}>{vehicle.make_display}</li>
+					// </div>
+					
+					<Card key={uuidv4()} object={vehicle}/>
+					)}
 			</div>
 		</Fragment>
   );

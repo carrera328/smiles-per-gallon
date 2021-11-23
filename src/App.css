@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+body {
+  font-family: 'Bebas Neue', cursive;
+  font-weight: 100;
+}
+
 .App {
   text-align: center;
 }
@@ -37,6 +44,59 @@
   }
 }
 
-.stuff {
-  background-color: red;
+
+
+.dc-vertical {
+  display:flex;
+  flex-direction: column;
 }
+
+.dc-horizontal {
+  display:flex;
+  flex-direction:row;
+}
+
+
+
+.dc-size_1-of-4 {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.dc-size_2-of-4 {
+  grid-column-start: 1;
+  grid-column-end: 7; 
+}
+
+.dc-size_3-of-4 {
+  grid-column-start: 1;
+  grid-column-end: 10;
+  justify-self: center;
+}
+
+.dc-size_4-of-4 {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+.dc-size-large {
+  height: 6rem;
+}
+
+[data-id='cards-list'] {
+  display: flex;
+  flex-direction: column;
+
+}
+
+[data-id='cards-list']  {
+  background-color:rebeccapurple;
+}
+
+[data-id='cards'] {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 5%;
+}
+
